@@ -4,7 +4,7 @@ set -e
 mkdir -p "$HOME" /workspace
 
 if [ -n "$DOT_URL" ]; then
-    [ -d "$HOME/.git" ] || git clone $DOT_URL $HOME
+    [ -d "$HOME/.git" ] || git clone $DOT_URL $HOME/dotfiles ; mv $HOME/dotfiles/.git $HOME ; rm -Rf $HOME/dotfiles
     git -C $HOME remote set-url origin $DOT_URL
     git -C $HOME reset --hard HEAD
     git -C $HOME pull
