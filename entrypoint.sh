@@ -17,4 +17,6 @@ if [ -n "$GIT_URL" ]; then
     git -C /workspace pull
 fi
 
+(sleep 10 && devcontainer up --workspace-folder /workspace) &
+
 exec /usr/local/bin/dockerd-entrypoint.sh "$@"
