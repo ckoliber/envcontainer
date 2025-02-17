@@ -1,0 +1,13 @@
+tagFormat: ${version}
+branches:
+    - main
+plugins:
+    - "@semantic-release/commit-analyzer"
+    - "@semantic-release/release-notes-generator"
+    - "@semantic-release/changelog"
+    - "@semantic-release/github"
+    - - "@semantic-release/git"
+      - assets: [CHANGELOG.md]
+    - - "@semantic-release/exec"
+      - publishCmd: |
+            curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_TOKEN" $GITHUB_API/repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches -d '{"ref":"refs/tags/${nextRelease.version}"}'
