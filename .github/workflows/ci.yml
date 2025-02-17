@@ -44,12 +44,13 @@ jobs:
               uses: docker/build-push-action@v6
               with:
                   platforms: linux/amd64,linux/arm64
-                  push: ${{ startsWith(github.ref, 'refs/tags/') }}
+                  push: true
                   tags: |
-                      ${{ github.repository }}:latest
-                      ${{ github.repository }}:${{ github.ref_name }}
-                      ghcr.io/${{ github.repository }}:latest
-                      ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+                      ${{ !startsWith(github.ref, 'refs/tags/') && image }}
+                      ${{ startsWith(github.ref, 'refs/tags/') && ${{ github.repository }}:latest }}
+                      ${{ startsWith(github.ref, 'refs/tags/') && ${{ github.repository }}:${{ github.ref_name }} }}
+                      ${{ startsWith(github.ref, 'refs/tags/') && ghcr.io/${{ github.repository }}:latest }}
+                      ${{ startsWith(github.ref, 'refs/tags/') && ghcr.io/${{ github.repository }}:${{ github.ref_name }} }}
 
     release:
         needs: build
