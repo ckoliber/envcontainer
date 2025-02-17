@@ -44,13 +44,12 @@ jobs:
               uses: docker/build-push-action@v6
               with:
                   platforms: linux/amd64,linux/arm64
-                  push: true
+                  push: ${{ github.ref_type == 'tag' }}
                   tags: |
-                      ${{ !startsWith(github.ref, 'refs/tags/') && "image" }}
-                      ${{ startsWith(github.ref, 'refs/tags/') && "${{ github.repository }}:latest" }}
-                      ${{ startsWith(github.ref, 'refs/tags/') && "${{ github.repository }}:${{ github.ref_name }}" }}
-                      ${{ startsWith(github.ref, 'refs/tags/') && "ghcr.io/${{ github.repository }}:latest" }}
-                      ${{ startsWith(github.ref, 'refs/tags/') && "ghcr.io/${{ github.repository }}:${{ github.ref_name }}" }}
+                      ${{ github.repository }}:latest
+                      ${{ github.repository }}:${{ github.ref_name.replace(/\//g, '-') }}
+                      ghcr.io/${{ github.repository }}:latest
+                      ghcr.io/${{ github.repository }}:${{ github.ref_name.replace(/\//g, '-') }}
 
     release:
         needs: build
@@ -60,7 +59,7 @@ jobs:
             issues: write
             pull-requests: write
             id-token: write
-        if: github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'chore')
+        if: github.ref_protected && !startsWith(github.event.head_commit.message, 'chore')
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
