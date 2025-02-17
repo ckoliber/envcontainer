@@ -54,6 +54,11 @@ jobs:
     release:
         needs: build
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            issues: write
+            pull-requests: write
+            id-token: write
         if: github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'chore')
         steps:
             - name: Checkout repository
