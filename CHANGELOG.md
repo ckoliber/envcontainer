@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ckoliber/envcontainer/compare/1.0.0...1.1.0) (2025-02-17)
+
+
+### Features
+
+* add README, LICENSE ([259980c](https://github.com/ckoliber/envcontainer/commit/259980c5ca47ccbae0a512f702dc9bb7b13c07f8))
+
 # 1.0.0 (2025-02-17)
 
 
