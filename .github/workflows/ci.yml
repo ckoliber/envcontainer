@@ -10,7 +10,7 @@ on:
         inputs: {}
 
 jobs:
-    docker:
+    build:
         runs-on: ubuntu-latest
         permissions:
             contents: read
@@ -50,3 +50,17 @@ jobs:
                       ${{ github.repository }}:${{ github.ref_name }}
                       ghcr.io/${{ github.repository }}:latest
                       ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+
+    release:
+        needs: build
+        runs-on: ubuntu-latest
+        if: github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'chore')
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Semantic Release
+              run: cp .github/.releaserc.yml .
+            - uses: cycjimmy/semantic-release-action@v4
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
