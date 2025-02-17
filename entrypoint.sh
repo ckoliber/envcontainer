@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
 
-mkdir -p "$HOME" /workspace
+DATA=/workspaces/$(basename -s .git "$GIT_URL")
+mkdir -p $HOME $DATA
 
 if [ -n "$DOT_URL" ]; then
     [ -d "$HOME/.git" ] || git clone $DOT_URL $HOME/dotfiles ; mv $HOME/dotfiles/.git $HOME ; rm -Rf $HOME/dotfiles
@@ -11,10 +12,10 @@ if [ -n "$DOT_URL" ]; then
 fi
 
 if [ -n "$GIT_URL" ]; then
-    [ -d "/workspace/.git" ] || git clone $GIT_URL /workspace
-    git -C /workspace remote set-url origin $GIT_URL
-    git -C /workspace reset --hard HEAD
-    git -C /workspace pull
+    [ -d "$DATA/.git" ] || git clone $GIT_URL $DATA
+    git -C $DATA remote set-url origin $GIT_URL
+    git -C $DATA reset --hard HEAD
+    git -C $DATA pull
 fi
 
 (sleep 10 && devcontainer up --workspace-folder /workspace) &
