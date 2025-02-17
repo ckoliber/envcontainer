@@ -1,3 +1,14 @@
+## [1.1.1](https://github.com/ckoliber/envcontainer/compare/1.1.0...1.1.1) (2025-02-17)
+
+
+### Bug Fixes
+
+* change CI ([84d2d62](https://github.com/ckoliber/envcontainer/commit/84d2d6224da8c611bd990acf082cb661221b70a6))
+* change CI ([54b66d6](https://github.com/ckoliber/envcontainer/commit/54b66d6056fcb57a21d07b9b73705a8e09e9f602))
+* change CI ([4984e10](https://github.com/ckoliber/envcontainer/commit/4984e10aa3a1aa5c853f05839d4c0eb52693bb89))
+* change CI docker build tags ([197af26](https://github.com/ckoliber/envcontainer/commit/197af263896c3caa064da34ad87b23e12bb3263a))
+* CI ([8593d5b](https://github.com/ckoliber/envcontainer/commit/8593d5bcfe5a2c4673f41d03297f6878fa69ccdd))
+
 # [1.1.0](https://github.com/ckoliber/envcontainer/compare/1.0.0...1.1.0) (2025-02-17)
 
 
