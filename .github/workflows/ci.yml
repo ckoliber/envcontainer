@@ -41,15 +41,16 @@ jobs:
               uses: docker/setup-buildx-action@v3
 
             - name: Build and push
-              uses: docker/build-push-action@v6
+              run: echo TAG=${GITHUB_REF_NAME/\//-} >> $GITHUB_ENV
+            - uses: docker/build-push-action@v6
               with:
                   platforms: linux/amd64,linux/arm64
-                  push: ${{ github.ref_type == 'tag' }}
+                  outputs: type=${{ github.ref_type == 'tag' && 'registry' || 'cacheonly' }}
                   tags: |
                       ${{ github.repository }}:latest
-                      ${{ github.repository }}:${{ github.ref_name.replace(/\//g, '-') }}
+                      ${{ github.repository }}:${{ env.TAG }}
                       ghcr.io/${{ github.repository }}:latest
-                      ghcr.io/${{ github.repository }}:${{ github.ref_name.replace(/\//g, '-') }}
+                      ghcr.io/${{ github.repository }}:${{ env.TAG }}
 
     release:
         needs: build
