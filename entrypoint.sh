@@ -2,7 +2,6 @@
 set -e
 
 DATA=/workspaces/$(basename -s .git "$GIT_URL")
-mkdir -p $HOME $DATA
 
 if [ -n "$DOT_URL" ]; then
     [ -d "$HOME/.git" ] || git clone $DOT_URL $HOME/dotfiles ; mv $HOME/dotfiles/.git $HOME ; rm -Rf $HOME/dotfiles
