@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ckoliber/envcontainer/compare/1.0.1...1.1.0) (2025-02-18)
+
+
+### Features
+
+* create workspaces folder in Dockerfile ([c05c4ef](https://github.com/ckoliber/envcontainer/commit/c05c4ef69d349f6b9d74928a612897f4a94a9f7c))
+
 ## [1.0.1](https://github.com/ckoliber/envcontainer/compare/1.0.0...1.0.1) (2025-02-18)
 
 
