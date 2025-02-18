@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/ckoliber/envcontainer/compare/1.1.0...1.1.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* change Dockerfile commands order ([48b138f](https://github.com/ckoliber/envcontainer/commit/48b138fd090ca738beff3b17e1b6de7efae6ea80))
+
 # [1.1.0](https://github.com/ckoliber/envcontainer/compare/1.0.1...1.1.0) (2025-02-18)
 
 
