@@ -18,6 +18,6 @@ if [ -n "$GIT_URL" ]; then
     git -C $DATA pull
 fi
 
-(sleep 10 && devcontainer up --workspace-folder /workspace) &
+(sleep 10 && devcontainer up --workspace-folder $DATA) &
 
 exec /usr/local/bin/dockerd-entrypoint.sh "$@"
