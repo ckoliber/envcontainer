@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/ckoliber/envcontainer/compare/1.1.1...1.2.0) (2025-02-19)
+
+
+### Features
+
+* migrate from docker to podman ([98bf10b](https://github.com/ckoliber/envcontainer/commit/98bf10b9535a4a016a39d650a3137fc555c3a3bf))
+
 ## [1.1.1](https://github.com/ckoliber/envcontainer/compare/1.1.0...1.1.1) (2025-02-18)
 
 
