@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/ckoliber/envcontainer/compare/1.3.1...1.4.0) (2025-02-19)
+
+
+### Features
+
+* add --remove-existing-container flag to devcontainer ([4fb265c](https://github.com/ckoliber/envcontainer/commit/4fb265c99def5407c9e31e16f1291bca7f96790a))
+
 ## [1.3.1](https://github.com/ckoliber/envcontainer/compare/1.3.0...1.3.1) (2025-02-19)
 
 
