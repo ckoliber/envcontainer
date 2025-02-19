@@ -1,7 +1,7 @@
 FROM alpine:3.21.3
 
 RUN mkdir -p /workspaces
-RUN apk add --no-cache npm curl shadow podman podman-compose fuse-overlayfs && \
+RUN apk add --no-cache npm git curl shadow podman podman-compose fuse-overlayfs && \
     npm install -g @devcontainers/cli
 
 ADD /containers.conf /etc/containers/containers.conf
