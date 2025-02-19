@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/ckoliber/envcontainer/compare/1.2.0...1.3.0) (2025-02-19)
+
+
+### Features
+
+* install git in Dockerfile ([4001ad3](https://github.com/ckoliber/envcontainer/commit/4001ad319f92d35cf06937f0edfc812c19cbbdb3))
+
 # [1.2.0](https://github.com/ckoliber/envcontainer/compare/1.1.1...1.2.0) (2025-02-19)
 
 
