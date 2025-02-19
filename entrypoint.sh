@@ -17,6 +17,6 @@ if [ -n "$GIT_URL" ]; then
     git -C $DATA pull
 fi
 
-devcontainer up --docker-path podman --docker-compose-path podman-compose --workspace-folder $DATA
+devcontainer up --docker-path podman --docker-compose-path podman-compose --remove-existing-container --workspace-folder $DATA
 
 exec sleep infinity
