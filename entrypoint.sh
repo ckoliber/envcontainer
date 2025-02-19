@@ -17,6 +17,6 @@ if [ -n "$GIT_URL" ]; then
     git -C $DATA pull
 fi
 
-(sleep 10 && devcontainer up --workspace-folder $DATA) &
+devcontainer up --docker-path podman --docker-compose-path podman-compose --workspace-folder $DATA
 
-exec /usr/local/bin/dockerd-entrypoint.sh "$@"
+exec sleep infinity
