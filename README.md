@@ -22,7 +22,7 @@ docker run -d --privileged \
     -e DOT_URL=https://github.com/user/dotfiles.git \
     -v envcontainer-home:/root \
     -v envcontainer-workspaces:/workspaces \
-    -v envcontainer-containers:/var/lib/containers \
+    -v envcontainer-containers:/var/lib/docker \
     ckoliber/envcontainer:latest
 ```
 
@@ -34,7 +34,7 @@ docker service create --name devcontainer \
     --env DOT_URL=https://github.com/user/dotfiles.git \
     --mount type=volume,source=envcontainer-home,target=/root \
     --mount type=volume,source=envcontainer-workspaces,target=/workspaces \
-    --mount type=volume,source=envcontainer-containers,target=/var/lib/containers \
+    --mount type=volume,source=envcontainer-containers,target=/var/lib/docker \
     ckoliber/envcontainer:latest
 ```
 
@@ -69,7 +69,9 @@ spec:
                       - name: envcontainer-workspaces
                         mountPath: /workspaces
                       - name: envcontainer-containers
-                        mountPath: /var/lib/containers
+                        mountPath: /var/lib/docker
+                  securityContext:
+                      privileged: true
             volumes:
                 - name: envcontainer-home
                   persistentVolumeClaim:
