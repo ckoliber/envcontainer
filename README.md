@@ -84,6 +84,26 @@ spec:
                       claimName: envcontainer-containers
 ```
 
+## 🔒 Removing the `--privileged` Flag
+
+By default, `EnvContainer` requires `--privileged` mode to run Docker-in-Docker (DinD) and DevContainers seamlessly. However, for enhanced security and isolation, you can replace `--privileged` with a specialized runtime such as **Sysbox, Firecracker, Kata Containers, or gVisor**.
+
+### 1️⃣ Using **Sysbox** (Recommended for Rootless Containers)
+
+[Sysbox](https://github.com/nestybox/sysbox) is a container runtime that enables secure, rootless containers capable of running Docker, Kubernetes, and systemd inside them.
+
+**Docker Standalone (Sysbox Runtime)**
+
+```sh
+docker run -d \
+    --runtime=sysbox-runc \
+    -e GIT_URL=https://github.com/user/repo.git \
+    -e DOT_URL=https://github.com/user/dotfiles.git \
+    -v envcontainer-home:/root \
+    -v envcontainer-workspaces:/workspaces \
+    -v envcontainer-containers:/var/lib/docker \
+    ckoliber/envcontainer:latest
+
 ## 🎯 Use Cases
 
 -   **Self-Hosted Codespaces**: Run development environments locally or on a private cloud.
