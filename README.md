@@ -103,6 +103,7 @@ docker run -d \
     -v envcontainer-workspaces:/workspaces \
     -v envcontainer-containers:/var/lib/docker \
     ckoliber/envcontainer:latest
+```
 
 ## 🎯 Use Cases
 

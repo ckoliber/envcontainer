@@ -17,6 +17,13 @@ if [ -n "$GIT_URL" ]; then
     git -C $DATA pull
 fi
 
-(sleep 10 && devcontainer up --remove-existing-container --workspace-folder $DATA) &
+# Start Docker daemon
+exec /usr/local/bin/dockerd-entrypoint.sh "$@" &
 
-exec /usr/local/bin/dockerd-entrypoint.sh "$@"
+# Wait for Docker to be ready
+until docker info >/dev/null 2>&1; do
+    echo "Waiting for Docker to be ready..."
+    sleep 1
+done
+
+devcontainer up --remove-existing-container --workspace-folder "$DATA" && wait
