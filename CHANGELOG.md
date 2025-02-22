@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/ckoliber/envcontainer/compare/1.4.0...1.5.0) (2025-02-22)
+
+
+### Features
+
+* migrate from rootless-podman to docker (Use privileged or sysbox or firecracker) ([0c4c789](https://github.com/ckoliber/envcontainer/commit/0c4c789e3ef2b860439a07f6676e6f1c98f3787a))
+
 # [1.4.0](https://github.com/ckoliber/envcontainer/compare/1.3.1...1.4.0) (2025-02-19)
 
 
