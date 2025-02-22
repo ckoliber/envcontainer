@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/ckoliber/envcontainer/compare/1.5.0...1.6.0) (2025-02-22)
+
+
+### Features
+
+* remove sleep 10 for docker to be ready ([43b5a8c](https://github.com/ckoliber/envcontainer/commit/43b5a8cd458df2011c1ac0f4a4ad7b32571461ad))
+
 # [1.5.0](https://github.com/ckoliber/envcontainer/compare/1.4.0...1.5.0) (2025-02-22)
 
 
