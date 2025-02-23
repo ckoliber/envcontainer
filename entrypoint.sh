@@ -1,21 +1,20 @@
 #!/bin/sh
 set -e
 
-DATA=/workspaces/$(basename -s .git "$GIT_URL")
+git_fetch() {
+	URL=${1%%#*}
+	REF=""; [[ "$1" == *#* ]] && REF="${1##*#}"
+	DIR=$2; mkdir -p $DIR
 
-if [ -n "$DOT_URL" ]; then
-    [ -d "$HOME/.git" ] || git clone $DOT_URL $HOME/dotfiles ; mv $HOME/dotfiles/.git $HOME ; rm -Rf $HOME/dotfiles
-    git -C $HOME remote set-url origin $DOT_URL
-    git -C $HOME reset --hard HEAD
-    git -C $HOME pull
-fi
+	[ -d "$DIR/.git" ] || git -C $DIR init && git -C $DIR remote add origin ""
+	git -C $DIR remote set-url origin $URL
+	git -C $DIR fetch origin $REF
+	git -C $DIR switch $REF
+}
 
-if [ -n "$GIT_URL" ]; then
-    [ -d "$DATA/.git" ] || git clone $GIT_URL $DATA
-    git -C $DATA remote set-url origin $GIT_URL
-    git -C $DATA reset --hard HEAD
-    git -C $DATA pull
-fi
+# Fetch git changes
+[ -n "$DOT_URL" ] && git_fetch "$DOT_URL" "$HOME"
+[ -n "$GIT_URL" ] && git_fetch "$GIT_URL" "/workspaces/$(basename -s .git "${GIT_URL%%#*}")"
 
 # Start Docker daemon
 exec /usr/local/bin/dockerd-entrypoint.sh "$@" &
