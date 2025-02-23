@@ -1,3 +1,11 @@
+# [1.7.0](https://github.com/ckoliber/envcontainer/compare/1.6.0...1.7.0) (2025-02-23)
+
+
+### Features
+
+* add new git fetch function ([3db1087](https://github.com/ckoliber/envcontainer/commit/3db1087cc29c2b918da53b26f1138dcf4d8a919a))
+* fetch git changes specific branch ([7351cd1](https://github.com/ckoliber/envcontainer/commit/7351cd147fbba3ec354c8180df352ebaf5da34fa))
+
 # [1.6.0](https://github.com/ckoliber/envcontainer/compare/1.5.0...1.6.0) (2025-02-22)
 
 
