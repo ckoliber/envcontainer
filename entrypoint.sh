@@ -6,10 +6,10 @@ git_fetch() {
 	REF=""; [[ "$1" == *#* ]] && REF="${1##*#}"
 	DIR=$2; mkdir -p $DIR
 
-	[ -d "$DIR/.git" ] || git -C $DIR init && git -C $DIR remote add origin ""
+	[ -d "$DIR/.git" ] || (git -C $DIR init && git -C $DIR remote add origin "")
 	git -C $DIR remote set-url origin $URL
 	git -C $DIR fetch origin $REF
-	git -C $DIR switch $REF
+	git -C $DIR switch $REF || git -C $DIR switch master || git -C $DIR switch main
 }
 
 # Fetch git changes
