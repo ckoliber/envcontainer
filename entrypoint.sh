@@ -13,8 +13,9 @@ git_fetch() {
 }
 
 # Fetch git changes
+DATA="/workspaces/$(basename -s .git "${GIT_URL%%#*}")"
 [ -n "$DOT_URL" ] && git_fetch "$DOT_URL" "$HOME"
-[ -n "$GIT_URL" ] && git_fetch "$GIT_URL" "/workspaces/$(basename -s .git "${GIT_URL%%#*}")"
+[ -n "$GIT_URL" ] && git_fetch "$GIT_URL" "$DATA"
 
 # Start Docker daemon
 exec /usr/local/bin/dockerd-entrypoint.sh "$@" &
