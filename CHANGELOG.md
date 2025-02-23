@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/ckoliber/envcontainer/compare/1.7.0...1.7.1) (2025-02-23)
+
+
+### Bug Fixes
+
+* add DATA env ([4b67cab](https://github.com/ckoliber/envcontainer/commit/4b67cabf91c47a80ebd5c4b1565f4860cee254fa))
+
 # [1.7.0](https://github.com/ckoliber/envcontainer/compare/1.6.0...1.7.0) (2025-02-23)
 
 
