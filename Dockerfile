@@ -1,4 +1,4 @@
-FROM docker:27.5.1-dind
+FROM docker:28.0.0-dind
 
 RUN mkdir -p /workspaces
 RUN apk add --no-cache npm curl && \
