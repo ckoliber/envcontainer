@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/ckoliber/envcontainer/compare/1.7.1...1.8.0) (2025-02-24)
+
+
+### Features
+
+* replace docker with podman ([8a9ccff](https://github.com/ckoliber/envcontainer/commit/8a9ccffe31c4ec163ad7931729f0826bc23a3ddd))
+
 ## [1.7.1](https://github.com/ckoliber/envcontainer/compare/1.7.0...1.7.1) (2025-02-23)
 
 
