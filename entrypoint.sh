@@ -12,18 +12,10 @@ git_fetch() {
 	git -C $DIR switch $REF || git -C $DIR switch master || git -C $DIR switch main
 }
 
-# Fetch git changes
 DATA="/workspaces/$(basename -s .git "${GIT_URL%%#*}")"
 [ -n "$DOT_URL" ] && git_fetch "$DOT_URL" "$HOME"
 [ -n "$GIT_URL" ] && git_fetch "$GIT_URL" "$DATA"
 
-# Start Docker daemon
-exec /usr/local/bin/dockerd-entrypoint.sh "$@" &
+devcontainer up --docker-path podman --docker-compose-path podman-compose --remove-existing-container --workspace-folder "$DATA"
 
-# Wait for Docker to be ready
-until docker info >/dev/null 2>&1; do
-    echo "Waiting for Docker to be ready..."
-    sleep 1
-done
-
-devcontainer up --remove-existing-container --workspace-folder "$DATA" && wait
+exec sleep infinity
