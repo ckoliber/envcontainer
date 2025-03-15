@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/ckoliber/envcontainer/compare/1.8.0...2.0.0) (2025-03-15)
+
+
+### Features
+
+* use devcontainer/cli dotfiles feature ([2e69a70](https://github.com/ckoliber/envcontainer/commit/2e69a706b07d9e46627d424df8c88db9a48a9e76))
+
+
+### BREAKING CHANGES
+
+* change entrypoint.sh
+
 # [1.8.0](https://github.com/ckoliber/envcontainer/compare/1.7.1...1.8.0) (2025-02-24)
 
 
