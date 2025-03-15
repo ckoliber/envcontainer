@@ -20,9 +20,8 @@ EnvContainer is a minimal yet powerful containerized environment for running **D
 docker run -d --privileged \
     -e GIT_URL=https://github.com/user/repo.git \
     -e DOT_URL=https://github.com/user/dotfiles.git \
-    -v envcontainer-home:/root \
-    -v envcontainer-workspaces:/workspaces \
     -v envcontainer-containers:/var/lib/containers \
+    -v envcontainer-workspaces:/workspaces \
     ckoliber/envcontainer:latest
 ```
 
@@ -32,9 +31,8 @@ docker run -d --privileged \
 docker service create --name devcontainer \
     --env GIT_URL=https://github.com/user/repo.git \
     --env DOT_URL=https://github.com/user/dotfiles.git \
-    --mount type=volume,source=envcontainer-home,target=/root \
-    --mount type=volume,source=envcontainer-workspaces,target=/workspaces \
     --mount type=volume,source=envcontainer-containers,target=/var/lib/containers \
+    --mount type=volume,source=envcontainer-workspaces,target=/workspaces \
     ckoliber/envcontainer:latest
 ```
 
@@ -64,24 +62,19 @@ spec:
                       - name: DOT_URL
                         value: "https://github.com/user/dotfiles.git"
                   volumeMounts:
-                      - name: envcontainer-home
-                        mountPath: /root
-                      - name: envcontainer-workspaces
-                        mountPath: /workspaces
                       - name: envcontainer-containers
                         mountPath: /var/lib/containers
+                      - name: envcontainer-workspaces
+                        mountPath: /workspaces
                   securityContext:
                       privileged: true
             volumes:
-                - name: envcontainer-home
-                  persistentVolumeClaim:
-                      claimName: envcontainer-home
-                - name: envcontainer-workspaces
-                  persistentVolumeClaim:
-                      claimName: envcontainer-workspaces
                 - name: envcontainer-containers
                   persistentVolumeClaim:
                       claimName: envcontainer-containers
+                - name: envcontainer-workspaces
+                  persistentVolumeClaim:
+                      claimName: envcontainer-workspaces
 ```
 
 ## 🔒 Removing the `--privileged` Flag
@@ -99,9 +92,8 @@ docker run -d \
     --runtime=sysbox-runc \
     -e GIT_URL=https://github.com/user/repo.git \
     -e DOT_URL=https://github.com/user/dotfiles.git \
-    -v envcontainer-home:/root \
-    -v envcontainer-workspaces:/workspaces \
     -v envcontainer-containers:/var/lib/containers \
+    -v envcontainer-workspaces:/workspaces \
     ckoliber/envcontainer:latest
 ```
 
