@@ -7,9 +7,9 @@ EnvContainer is a minimal yet powerful containerized environment for running **D
 -   **Self-Hosted DevContainer Runtime**: Run DevContainer projects without relying on cloud providers.
 -   **Portable & Lightweight**: Works on any platform supporting Docker, including Swarm, Kubernetes and Nomad.
 -   **Automatic Configuration & Setup**:
-    -   Clones user dotfiles from `DOT_URL` for personal settings and credentials.
     -   Clones repositories from `GIT_URL` into `/workspaces/<REPO_NAME>`.
     -   Runs `devcontainer up` to bootstrap the environment.
+    -   Clones dotfiles from `DOT_URL` into `~/dotfiles`.
 -   **Fully Automated & Headless**: Deployable in CI/CD pipelines or local environments.
 
 ## 🔧 Usage
