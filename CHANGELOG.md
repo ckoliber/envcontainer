@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/ckoliber/envcontainer/compare/2.0.0...2.1.0) (2025-03-15)
+
+
+### Features
+
+* add dind hack script ([8803323](https://github.com/ckoliber/envcontainer/commit/880332318293ccfc007cd25fa535f4baf6b241eb))
+
 # [2.0.0](https://github.com/ckoliber/envcontainer/compare/1.8.0...2.0.0) (2025-03-15)
 
 
