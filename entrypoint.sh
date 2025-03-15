@@ -1,21 +1,12 @@
 #!/bin/sh
 set -e
 
-git_fetch() {
-	URL=${1%%#*}
-	REF=""; [[ "$1" == *#* ]] && REF="${1##*#}"
-	DIR=$2; mkdir -p $DIR
-
-	[ -d "$DIR/.git" ] || (git -C $DIR init && git -C $DIR remote add origin "")
-	git -C $DIR remote set-url origin $URL
-	git -C $DIR fetch origin $REF
-	git -C $DIR switch $REF || git -C $DIR switch master || git -C $DIR switch main
-}
-
 DATA="/workspaces/$(basename -s .git "${GIT_URL%%#*}")"
-[ -n "$DOT_URL" ] && git_fetch "$DOT_URL" "$HOME"
-[ -n "$GIT_URL" ] && git_fetch "$GIT_URL" "$DATA"
+git clone --depth 1 $GIT_URL $DATA
+git -C $DATA remote set-url origin $GIT_URL
+git -C $DATA reset --hard HEAD
+git -C $DATA pull
 
-devcontainer up --docker-path podman --docker-compose-path podman-compose --remove-existing-container --workspace-folder "$DATA"
+devcontainer up --docker-path podman --docker-compose-path podman-compose --remove-existing-container --dotfiles-repository "$DOT_URL" --workspace-folder "$DATA"
 
 exec sleep infinity
