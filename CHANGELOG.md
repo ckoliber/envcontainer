@@ -1,3 +1,11 @@
+## [2.1.1](https://github.com/ckoliber/envcontainer/compare/2.1.0...2.1.1) (2025-06-16)
+
+
+### Bug Fixes
+
+* change CI vars ([c4195c5](https://github.com/ckoliber/envcontainer/commit/c4195c5901ef5e7e41351f71ad886ebebc9e3cc1))
+* change RELEASE_TOKEN ([8294192](https://github.com/ckoliber/envcontainer/commit/8294192496f1f411d7ae13f96a5218e6c8f4813d))
+
 # [2.1.0](https://github.com/ckoliber/envcontainer/compare/2.0.0...2.1.0) (2025-03-15)
 
 
