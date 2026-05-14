@@ -4,13 +4,13 @@ EnvContainer is a minimal yet powerful containerized environment for running **D
 
 ## 🚀 Features
 
--   **Self-Hosted DevContainer Runtime**: Run DevContainer projects without relying on cloud providers.
--   **Portable & Lightweight**: Works on any platform supporting Docker, including Swarm, Kubernetes and Nomad.
--   **Automatic Configuration & Setup**:
-    -   Clones repositories from `GIT_URL` into `/workspaces/<REPO_NAME>`.
-    -   Runs `devcontainer up` to bootstrap the environment.
-    -   Clones dotfiles from `DOT_URL` into `~/dotfiles`.
--   **Fully Automated & Headless**: Deployable in CI/CD pipelines or local environments.
+- **Self-Hosted DevContainer Runtime**: Run DevContainer projects without relying on cloud providers.
+- **Portable & Lightweight**: Works on any platform supporting Docker, including Swarm, Kubernetes and Nomad.
+- **Automatic Configuration & Setup**:
+  - Clones repositories from `GIT_URL` into `/workspaces/<REPO_NAME>`.
+  - Runs `devcontainer up` to bootstrap the environment.
+  - Clones dotfiles from `DOT_URL` into `~/dotfiles`.
+- **Fully Automated & Headless**: Deployable in CI/CD pipelines or local environments.
 
 ## 🔧 Usage
 
@@ -42,39 +42,39 @@ docker service create --name devcontainer \
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: devcontainer
+  name: devcontainer
 spec:
-    replicas: 1
-    selector:
-        matchLabels:
-            app: devcontainer
-    template:
-        metadata:
-            labels:
-                app: devcontainer
-        spec:
-            containers:
-                - name: devcontainer
-                  image: ckoliber/envcontainer:latest
-                  env:
-                      - name: GIT_URL
-                        value: "https://github.com/user/repo.git"
-                      - name: DOT_URL
-                        value: "https://github.com/user/dotfiles.git"
-                  volumeMounts:
-                      - name: envcontainer-containers
-                        mountPath: /var/lib/containers
-                      - name: envcontainer-workspaces
-                        mountPath: /workspaces
-                  securityContext:
-                      privileged: true
-            volumes:
-                - name: envcontainer-containers
-                  persistentVolumeClaim:
-                      claimName: envcontainer-containers
-                - name: envcontainer-workspaces
-                  persistentVolumeClaim:
-                      claimName: envcontainer-workspaces
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devcontainer
+  template:
+    metadata:
+      labels:
+        app: devcontainer
+    spec:
+      containers:
+        - name: devcontainer
+          image: ckoliber/envcontainer:latest
+          env:
+            - name: GIT_URL
+              value: "https://github.com/user/repo.git"
+            - name: DOT_URL
+              value: "https://github.com/user/dotfiles.git"
+          volumeMounts:
+            - name: envcontainer-containers
+              mountPath: /var/lib/containers
+            - name: envcontainer-workspaces
+              mountPath: /workspaces
+          securityContext:
+            privileged: true
+      volumes:
+        - name: envcontainer-containers
+          persistentVolumeClaim:
+            claimName: envcontainer-containers
+        - name: envcontainer-workspaces
+          persistentVolumeClaim:
+            claimName: envcontainer-workspaces
 ```
 
 ## 🔒 Removing the `--privileged` Flag
@@ -99,9 +99,9 @@ docker run -d \
 
 ## 🎯 Use Cases
 
--   **Self-Hosted Codespaces**: Run development environments locally or on a private cloud.
--   **CI/CD Dev Environments**: Spin up DevContainers inside CI pipelines.
--   **Remote Development**: Host persistent workspaces for team collaboration.
+- **Self-Hosted Codespaces**: Run development environments locally or on a private cloud.
+- **CI/CD Dev Environments**: Spin up DevContainers inside CI pipelines.
+- **Remote Development**: Host persistent workspaces for team collaboration.
 
 ## 📄 License
 
