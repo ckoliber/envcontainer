@@ -42,7 +42,7 @@ else
 fi
 
 LATEST=""
-if is_release || is_prerelease; then
+if is_release; then
   LATEST="-t $GHCR_IMAGE:latest -t $DOCKER_IMAGE:latest"
 fi
 
