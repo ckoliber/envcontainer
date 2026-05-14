@@ -45,35 +45,35 @@ export container=podman
 #
 # Given that we're running privileged already, this should not be an issue.
 if [ -d /sys/kernel/security ] && ! mountpoint -q /sys/kernel/security; then
-	mount -t securityfs none /sys/kernel/security || {
-		echo >&2 'Could not mount /sys/kernel/security.'
-		echo >&2 'AppArmor detection and --privileged mode might break.'
-	}
+  mount -t securityfs none /sys/kernel/security || {
+    echo >&2 'Could not mount /sys/kernel/security.'
+    echo >&2 'AppArmor detection and --privileged mode might break.'
+  }
 fi
 
 # Mount /tmp (conditionally)
 if ! mountpoint -q /tmp; then
-	mount -t tmpfs none /tmp
+  mount -t tmpfs none /tmp
 fi
 
 # cgroup v2: enable nesting
 if [ -f /sys/fs/cgroup/cgroup.controllers ]; then
-	# move the processes from the root group to the /init group,
-	# otherwise writing subtree_control fails with EBUSY.
-	# An error during moving non-existent process (i.e., "cat") is ignored.
-	mkdir -p /sys/fs/cgroup/init
-	# this happens in a loop because things like "docker exec" on our dind
-	# container will create new processes, which creates a race between our
-	# moving everything to "init" and enabling subtree_control
-	while ! {
-		# move the processes from the root group to the /init group,
-		# otherwise writing subtree_control fails with EBUSY.
-		# An error during moving non-existent process (i.e., "cat") is ignored.
-		xargs -rn1 < /sys/fs/cgroup/cgroup.procs > /sys/fs/cgroup/init/cgroup.procs || :
-		# enable controllers
-		sed -e 's/ / +/g' -e 's/^/+/' < /sys/fs/cgroup/cgroup.controllers \
-			> /sys/fs/cgroup/cgroup.subtree_control
-	}; do true; done
+  # move the processes from the root group to the /init group,
+  # otherwise writing subtree_control fails with EBUSY.
+  # An error during moving non-existent process (i.e., "cat") is ignored.
+  mkdir -p /sys/fs/cgroup/init
+  # this happens in a loop because things like "docker exec" on our dind
+  # container will create new processes, which creates a race between our
+  # moving everything to "init" and enabling subtree_control
+  while ! {
+    # move the processes from the root group to the /init group,
+    # otherwise writing subtree_control fails with EBUSY.
+    # An error during moving non-existent process (i.e., "cat") is ignored.
+    xargs -rn1 </sys/fs/cgroup/cgroup.procs >/sys/fs/cgroup/init/cgroup.procs || :
+    # enable controllers
+    sed -e 's/ / +/g' -e 's/^/+/' </sys/fs/cgroup/cgroup.controllers \
+      >/sys/fs/cgroup/cgroup.subtree_control
+  }; do true; done
 fi
 
 # Change mount propagation to shared to make the environment more similar to a

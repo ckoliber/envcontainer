@@ -1,5 +1,30 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["config:recommended"],
-    "enabledManagers": ["dockerfile", "github-actions"]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard"],
+  "enabledManagers": ["mise", "dockerfile", "github-actions"],
+  "minimumReleaseAge": "1 days",
+  "packageRules": [
+    {
+      "description": "Automerge minor and patch updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "description": "Automerge all GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "automerge": true
+    },
+    {
+      "description": "Group all Go updates together",
+      "matchManagers": ["mise", "gomod"],
+      "matchDepNames": ["go", "golang"],
+      "rangeStrategy": "bump",
+      "groupName": "Go updates"
+    },
+    {
+      "description": "Disable updates for gocrud package",
+      "matchPackageNames": ["**/gocrud"],
+      "enabled": false
+    }
+  ]
 }
