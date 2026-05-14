@@ -41,6 +41,11 @@ else
   VERSION=$(git cliff --unreleased --bumped-version)-build.$(git rev-parse --short HEAD)
 fi
 
+LATEST=""
+if is_release || is_prerelease; then
+  LATEST="-t $GHCR_IMAGE:latest -t $DOCKER_IMAGE:latest"
+fi
+
 BUILDX=docker-cli-plugin-docker-buildx
 $BUILDX use buildkit 2>/dev/null || $BUILDX create --use --name buildkit --driver docker-container
-$BUILDX build -t $GHCR_IMAGE:$VERSION -t $DOCKER_IMAGE:$VERSION --platform linux/amd64,linux/arm64 --push .
+$BUILDX build -t $GHCR_IMAGE:$VERSION -t $DOCKER_IMAGE:$VERSION $LATEST --platform linux/amd64,linux/arm64 --push .
