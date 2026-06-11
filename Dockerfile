@@ -1,4 +1,4 @@
-FROM alpine:3.23.4
+FROM alpine:3.24.0
 
 RUN mkdir -p /workspaces
 RUN apk add --no-cache npm git curl podman podman-compose && \
