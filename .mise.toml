@@ -4,7 +4,7 @@ DOCKER_IMAGE = "ckoliber/envcontainer"
 GIT_CLIFF_CONFIG = "{{ config_root }}/.github/cliff.toml"
 
 [tools]
-gh = "2.98.0"
+gh = "2.100.0"
 git-cliff = "2.13.1"
 "aqua:docker/cli" = "29.8.0"
 "aqua:docker/buildx" = "0.37.1"
