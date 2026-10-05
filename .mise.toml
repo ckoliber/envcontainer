@@ -7,7 +7,7 @@ GIT_CLIFF_CONFIG = "{{ config_root }}/.github/cliff.toml"
 gh = "2.101.0"
 git-cliff = "2.14.2"
 "aqua:docker/cli" = "29.8.1"
-"aqua:docker/buildx" = "0.37.1"
+"aqua:docker/buildx" = "0.37.2"
 
 [tasks.build]
 run = ".github/build.sh"
